@@ -1,5 +1,4 @@
 module.exports.Account = require('./Account.js');
-module.exports.Domo = require('./Domo.js');
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
