@@ -38,7 +38,7 @@ let redisURL = {
     hostname: 'redis-13139.c240.us-east-1-3.ec2.cloud.redislabs.com',
     port: '13139',
 };
-const redisPASS = 'APOOpVCP0lXB87BcuW6O4EtHbLak22Cs';
+let redisPASS = 'APOOpVCP0lXB87BcuW6O4EtHbLak22Cs';
 if (process.env.REDISCLOUD_URL) {
     redisURL = url.parse(process.env.REDISCLOUD_URL);
     [, redisPASS] = redisURL.auth.split(':');
