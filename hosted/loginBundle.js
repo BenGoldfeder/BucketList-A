@@ -139,7 +139,7 @@ var setup = function setup(csrf) {
 
 var getToken = function getToken() {
   sendAjax('GET', '/getToken', null, function (result) {
-    setup(results.csrfToken);
+    setup(result.csrfToken);
   });
 };
 
@@ -149,20 +149,20 @@ $(document).ready(function () {
 "use strict";
 
 var handleError = function handleError(message) {
-  $("#errormessage").text(message);
-  $("#domomessage").animate({
+  $("#errorMessage").text(message);
+  $("#domoMessage").animate({
     width: 'toggle'
   }, 350);
 };
 
 var redirect = function redirect(response) {
-  $("#domomessage").animate({
+  $("#domoMessage").animate({
     width: 'hide'
   }, 350);
   window.location = response.redirect;
 };
 
-var sendAjac = function sendAjac(type, action, data, success) {
+var sendAjax = function sendAjax(type, action, data, success) {
   $.ajax({
     cache: false,
     type: type,
