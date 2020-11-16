@@ -49,7 +49,7 @@ const TaskList = function(props) {
     const taskNodes = props.tasks.map(function(task) {
         return (
             <div key={task._id} className="task">
-                <img src="/assets/img/domoface.jpeg" alt="task icon" className="taskIcon" />
+                <img src="/assets/img/note.png" alt="task icon" className="taskIcon" />
                 <h3 className="taskName"> Name: {task.name} </h3>
                 <h3 className="taskPriority"> Name: {task.priority} </h3>
             </div>
