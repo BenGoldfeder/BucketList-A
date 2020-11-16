@@ -66,7 +66,7 @@ app.use(session({
     store: new RedisStore({ //Redis
         client: redisClient,
     }),
-    secret: 'Domo Arigato',
+    secret: 'We can do this',
     resave: true,
     saveUninitialized: true,
     cookie: {

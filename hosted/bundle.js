@@ -1,99 +1,102 @@
 "use strict";
 
-var handleDomo = function handleDomo(e) {
+var handleTask = function handleTask(e) {
   e.preventDefault();
-  $("#domoMessage").animate({
+  $("#myMessage").animate({
     width: 'hide'
   }, 350);
 
-  if ($("#domoName").val() == '' || $("#domoAge").val() == '') {
-    handleError("RAWR! All fields are required");
+  if ($("#TaskName").val() == '' || $("#taskPriority").val() == '') {
+    handleError("Please fill out all fields!");
     return false;
   }
 
-  sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function () {
-    loadDomosFromServer();
+  sendAjax('POST', $("#taskForm").attr("action"), $("#taskForm").serialize(), function () {
+    loadTasksFromServer();
   });
   return false;
 };
 
-var DomoForm = function DomoForm(props) {
+var TaskForm = function TaskForm(props) {
   return /*#__PURE__*/React.createElement("form", {
-    id: "domoForm",
-    name: "domoForm",
-    onSubmit: handleDomo,
+    id: "taskForm",
+    name: "taskForm",
+    onSubmit: handleTask,
     action: "/maker",
     method: "POST",
-    className: "domoForm"
+    className: "taskForm"
   }, /*#__PURE__*/React.createElement("label", {
     htmlFor: "name"
   }, "Name: "), /*#__PURE__*/React.createElement("input", {
-    id: "domoName",
+    id: "taskName",
     type: "text",
     name: "name",
-    placeholder: "Domo Name"
+    placeholder: "Task Name"
   }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "age"
-  }, "Age: "), /*#__PURE__*/React.createElement("input", {
-    id: "domoAge",
+    htmlFor: "priority"
+  }, "Priority: "), /*#__PURE__*/React.createElement("input", {
+    id: "taskPriority",
     type: "password",
-    name: "age",
-    placeholder: "Domo Age"
+    name: "priority",
+    placeholder: "Task Priority"
   }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
     value: props.csrf
   }), /*#__PURE__*/React.createElement("input", {
-    className: "makeDomoSubmit",
+    className: "makeTaskSubmit",
     type: "submit",
-    value: "Make Domo"
+    value: "Make Task"
   }));
 };
 
-var DomoList = function DomoList(props) {
-  if (props.domos.length === 0) {
+var TaskList = function TaskList(props) {
+  if (props.tasks.length === 0) {
     return /*#__PURE__*/React.createElement("div", {
-      className: "domoList"
+      className: "taskList"
     }, /*#__PURE__*/React.createElement("h3", {
-      className: "emptyDomo"
-    }, "No Domos yet"));
+      className: "emptyTask"
+    }, "No tasks added yet! Why not add one?"));
   }
 
-  var domoNodes = props.domos.map(function (domo) {
+
+//Change face IMG
+  var taskNodes = props.tasks.map(function (task) {
     return /*#__PURE__*/React.createElement("div", {
-      key: domo._id,
-      className: "domo"
+      key: task._id,
+      className: "task"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "/assets/img/domoface.jpeg",
-      alt: "domo face",
-      className: "domoFace"
+      src: "/assets/img/note.png",
+      alt: "task icon",
+      className: "taskIcon"
     }), /*#__PURE__*/React.createElement("h3", {
-      className: "domoName"
-    }, " Name: ", domo.name, " "), /*#__PURE__*/React.createElement("h3", {
-      className: "domoAge"
-    }, " Name: ", domo.age, " "));
+      className: "taskName"
+    }, " Name: ", task.name, " "), /*#__PURE__*/React.createElement("h3", {
+      className: "taskPriority"
+    }, " Priority: ", task.priority, " "));
   });
   return /*#__PURE__*/React.createElement("div", {
-    className: "domoList"
-  }, domoNodes);
+    className: "taskList"
+  }, taskNodes);
 };
 
-var loadDomosFromServer = function loadDomosFromServer() {
-  sendAjax('GET', '/getDomos', null, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
-      domos: data.domos
-    }), document.querySelector("#domos"));
+
+var loadTasksFromServer = function loadTasksFromServer() {
+  sendAjax('GET', '/getTasks', null, function (data) {
+    ReactDOM.render( /*#__PURE__*/React.createElement(TaskList, {
+      tasks: data.tasks
+    }), document.querySelector("#tasks"));
   });
 };
 
 var setup = function setup(csrf) {
-  ReactDOM.render( /*#__PURE__*/React.createElement(DomoForm, {
+  ReactDOM.render( /*#__PURE__*/React.createElement(TaskForm, {
     csrf: csrf
-  }), document.querySelector("#makeDomo"));
-  ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
-    domos: []
-  }), document.querySelector("#domos"));
-  loadDomosFromServer();
+  }), document.querySelector("#makeTask"));
+  ReactDOM.render( /*#__PURE__*/React.createElement(TaskList, {
+    tasks: []
+  }), document.querySelector("#tasks"));
+  loadTasksFromServer();
 };
 
 var getToken = function getToken() {
@@ -109,13 +112,13 @@ $(document).ready(function () {
 
 var handleError = function handleError(message) {
   $("#errorMessage").text(message);
-  $("#domoMessage").animate({
+  $("#myMessage").animate({
     width: 'toggle'
   }, 350);
 };
 
 var redirect = function redirect(response) {
-  $("#domoMessage").animate({
+  $("#myMessage").animate({
     width: 'hide'
   }, 350);
   window.location = response.redirect;

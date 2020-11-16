@@ -4,20 +4,34 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-color: #E9ECF0;
+    
+    font-family: Helvetica;
+    font-weight: bold;
 }
 
 #logo {
-    height: 40px;
-    width: 40;
-    padding-top: 5px;
+    height: 50px;
+    width: 50px;
+    padding: 7px;
     float:left;
-    border-radius: 8px;
+    margin: 0;
+}
+
+h1 {
+    display: block;
+    font-size: 2.2em;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: background-color: #2A3245;
+    color: #2A3245;
 }
 
 nav {
     width: 100%;
-    height: 50px;
-    background-color: #55acee;
+    height: 65px;;
+    background-color: #2A3245;
 }
 
 nav:nth-child(1) {
@@ -25,9 +39,9 @@ nav:nth-child(1) {
 }
 
 .navlink {
-    padding: 5px;
-    padding-top: 12px;
-    padding-left: 20px;
+    padding: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
     color: white;
     font-size: 1.3em;
     float: left;
@@ -36,65 +50,69 @@ nav:nth-child(1) {
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
     color: white;
     text-decoration: none;
-    padding: 5px;
-    border-radius: 4px;
-    background-color: #55acee;
-    transition: background-color 0.4s ease;
+    padding: 15px;
+    margin: 15px;
+    border-radius: 25px;
+    background-color: #1F2533;
+    transition: background-color 0.2s ease-in;
 }
 
 .navlink a:hover {
-    transition: background-color 0.8s ease;
-    background-color: #66bdff;
+    transition: background-color 0.1s ease-out;
+    background-color: #515D7B;
 }
 
-.domoForm {
-    border: 2px solid #338acc;
-    height: 35px;
-    width: 700px;
-    margin-top:0px;
+
+
+.taskForm {
+    color: #2A3245;
+    display: block;
+    align-self: center;
     padding-top:10px;
-    background-color: #55acee;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
+    align-content: center;
 }
 
-.domoForm label {
+.taskForm label {
     display: inline-block;
-    width: 75px;
-    margin-left: 10px;
+    padding-right: 15px;
     font-size: 1.2em;
     float: left;
-    color: white;
+    color: #1F2533;
 }
 
-.domoForm input[type=text] {
+.taskForm input[type=text] {
     float:left;
 }
 
-.makeDomoSubmit {
-    transition: background-color 0.4s ease;
+.makeTaskSubmit {
     display: inline;
     width: 90px;
-    background-color: #55acee;
-    border-radius: 2px;
+    background-color: #1F2533;
+    transition: background-color 0.2s ease-in;
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-radius: 25px;
     color: white;
     text-decoration: none;
 }
 
-.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
+.makeTaskSubmit:link, .makeTaskSubmit:visited, .makeTaskSubmit:hover, .makeTaskSubmit:active {
     color: white;
 }
 
-.makeDomoSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
+.makeTaskSubmit:hover {
+    transition: background-color 0.1s ease-out;
+    background-color: #515D7B;
 }
 
+
+
 .mainForm {
-    height: 300px;
+    height: 70%;
     width: 350px;
     margin: 0 auto;
-    padding-top: 350px;
+    padding-top: 150px;
     font-size: 1.2em;
 }
 
@@ -105,10 +123,13 @@ nav:nth-child(1) {
 .mainForm label {
     display: inline-block;
     width: 100px;
-    margin-right: 10px;
+    margin-right: 20px;
     text-align: right;
     font-size: 1.2em;
 }
+
+
+
 
 .formSubmit {
     transition: background-color 0.4s ease;
@@ -118,36 +139,43 @@ nav:nth-child(1) {
     margin-top: 14px;
     font-size: 1.2em;
     width: 100px;
-    background-color: #55acee;
-    border-radius: 2px;
-    border-color: #66acee;
-    padding: 3px 0px;
+    background-color: #1F2533;
+    border-radius: 25px;
+    padding: 12px;
     color: white;
     text-decoration: none;
+    border: 0;
 }
 
 .formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
     color: white;
 }
 
-.formSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
+.formSubmit:focus {
+    outline: 0;
 }
+
+.formSubmit:hover {
+    transition: background-color 0.2s ease;
+    background-color: #515D7B;
+}
+
+
+
 
 #user, #pass, #pass2 {
     text-align: center;
     font-size: 1.1em;
     width: 180px;
-    border-radius: 6px;
+    margin-bottom: 10px;
+    border-radius: 25px;
 }
 
 #user:focus, #pass:focus, #pass2:focus {
     outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
 }
 
-#domoMessage {
+#myMessage {
     display:none;
     top: 250px;
     width: 250px;
@@ -158,7 +186,7 @@ nav:nth-child(1) {
     overflow: hidden;
 }
 
-#domoMessage h3 {
+#myMessage h3 {
     width: 200px;
     position: absolute;
     top: 0px;
@@ -178,7 +206,7 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
-#domo {
+#mascot {
     z-index: 225;
     margin-top: -20px;
     margin-left: 135px;
@@ -189,46 +217,46 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-#domos {
+
+
+
+
+
+#tasks {
     width: 40%;
     min-width: 400px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
 }
 
-.domo {
-    width: 95%;
+.task {
+    width: 100%;
     margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    background-color: #55acee;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #2A3245;
+    color: white;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
+    border-radius: 40px;
 }
 
-.domo:hover {
-    transition: border-color 0.2s ease-out;
-    border-color: rgba(255,255,255, 0.8);
-    transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
+.task:hover {
+    transition: background-color 0.1s ease-out;
+    background-color: #515D7B;
 }
 
-img.domoFace {
+img.taskIcon {
     margin-left: 25px;
     margin-right: 10px;
     height: 50px;
     width: 50px;
-    border-radius: 4px;
     margin-top:10px;
     float:left;
 }
 
-h3.emptyDomo {
+h3.emptyTask {
     width: 400px;
     font-size: 1.5em;
     margin: 0 auto;
@@ -236,7 +264,7 @@ h3.emptyDomo {
     margin-top: 18px;
 }
 
-h3.domoName {
+h3.taskName {
     float:left;
     width: 200px;
     font-weight: bold;
@@ -244,7 +272,7 @@ h3.domoName {
     font-size: 1.5em;
 }
 
-h3.domoAge {
+h3.taskPriority {
     float:right;
     text-align: left;
     width: 100px;
@@ -253,10 +281,13 @@ h3.domoAge {
     font-size: 1.5em;
 }
 
-.domo:first-child {
-    margin-top: 10px;
+
+
+
+
+#content {
+    /*background-color: white;*/
+    margin: 0px 50px;
+    padding-top: 0;
 }
 
-.domo:last-child {
-    margin-bottom:10px;
-}
