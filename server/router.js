@@ -5,7 +5,7 @@ const router = (app) => {
     
     app.get('/getToken', mid.requiresSecure, controllers.Account.getToken);
     app.get('/getTasks', mid.requiresLogin, controllers.Task.getTasks);
-    app.post('/deleteTask', mid.requiresLogin, controllers.Task.deleteTask);
+    app.delete('/deleteTask', mid.requiresLogin, controllers.Task.deleteTask);
     
     app.get('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
     app.post('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.login);

@@ -198,8 +198,8 @@ nav:nth-child(1) {
 }
 
 #speech {
-    height: 120px;
-    width: 250px;
+    height: 180px;
+    width: 290px;
     z-index:300;
 }
 
@@ -211,17 +211,19 @@ nav:nth-child(1) {
 }
 
 #mascot {
-    z-index: 225;
+    z-index: 250;
     margin-top: -20px;
-    margin-left: 135px;
-    height: 450px;
-    width: 300px;
-    -ms-transform: rotate(330deg);
-    -webkit-transform: rotate(330deg); 
-    transform: rotate(330deg);
+    margin-left: 80px;
+    height: 400px;
+    width: 380px;
 }
 
 
+#myAd {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
 
 
 

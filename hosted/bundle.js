@@ -39,7 +39,7 @@ var TaskForm = function TaskForm(props) {
     type: "password",
     name: "priority",
     placeholder: "Task Priority"
-  }), /*#__PURE__*/React.createElement("label", {
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
     htmlFor: "icon"
   }, "Type: "), /*#__PURE__*/React.createElement("select", {
     id: "taskIcon",
@@ -92,7 +92,7 @@ var TaskList = function TaskList(props) {
       src: "/assets/img/closed.png",
       alt: "delete task",
       className: "deleteIcon",
-      onClick: deleteTask(task._id)
+      onClick: showPremium
     }), /*#__PURE__*/React.createElement("h3", {
       className: "taskName"
     }, " Name: ", task.name, " "), /*#__PURE__*/React.createElement("h3", {
@@ -128,8 +128,8 @@ var getToken = function getToken() {
   });
 };
 
-var deleteTask = function deleteTask(selectedID) {
-  sendAjax('POST', '/deleteTask', selectedID);
+var showPremium = function showPremium() {
+  handleError("Upgrade to Premium to manage your list and remove ads!");
 };
 
 $(document).ready(function () {
@@ -139,13 +139,13 @@ $(document).ready(function () {
 
 var handleError = function handleError(message) {
   $("#errorMessage").text(message);
-  $("#domoMessage").animate({
+  $("#myMessage").animate({
     width: 'toggle'
   }, 350);
 };
 
 var redirect = function redirect(response) {
-  $("#domoMessage").animate({
+  $("#myMessage").animate({
     width: 'hide'
   }, 350);
   window.location = response.redirect;

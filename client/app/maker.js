@@ -29,6 +29,7 @@ const TaskForm = (props) => {
         <label htmlFor="priority">Priority: </label>
         <input id="taskPriority" type="password" name="priority" placeholder="Task Priority"/>
         
+            <br></br>
         <label htmlFor="icon">Type: </label>
         <select id="taskIcon" name="icon">
             <option value="/assets/img/note.png">None</option>
@@ -63,7 +64,7 @@ const TaskList = function(props) {
         return (
             <div key={task._id} className="task">
                 <img src={task.icon} alt="task icon" className="displayIcon" />
-                <img src="/assets/img/closed.png" alt="delete task" className="deleteIcon" onClick={deleteTask(task._id)}/>
+                <img src="/assets/img/closed.png" alt="delete task" className="deleteIcon" onClick={showPremium}/>
                 <h3 className="taskName"> Name: {task.name} </h3>
                 <h3 className="taskPriority"> Priority: {task.priority} </h3>
                 
@@ -105,9 +106,9 @@ const getToken = () => {
 };
 
 
-const deleteTask = function(selectedID){
-    sendAjax('POST', '/deleteTask', selectedID);
-};
+const showPremium = () => {
+    handleError("Upgrade to Premium to manage your list and remove ads!");
+}
 
 
 $(document).ready(function() {
