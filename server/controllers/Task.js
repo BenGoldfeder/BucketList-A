@@ -20,6 +20,7 @@ const makeTask = (req, res) => {
      const taskData = {
             name: req.body.name,
             priority: req.body.priority,
+            icon: req.body.icon,
             owner: req.session.account._id,
      };
     
@@ -54,6 +55,15 @@ const getTasks = (request, response) => {
 };
 
 
+
+const deleteTask = (selectedID) => {
+    //Task.deleteOne({_id: selectedID});
+    Task.TaskModel.deleteOne({_id: selectedID});
+};
+
+
+
 module.exports.makerPage = makerPage;
 module.exports.make = makeTask;
 module.exports.getTasks = getTasks;
+module.exports.deleteTask = deleteTask;

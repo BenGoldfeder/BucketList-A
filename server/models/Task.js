@@ -24,6 +24,10 @@ const TaskSchema = new mongoose.Schema({
         required: true,
     },
     
+    icon: {
+        type: String,
+    },
+    
     owner: {
         type: mongoose.Schema.ObjectId,
         required: true,
@@ -41,13 +45,14 @@ const TaskSchema = new mongoose.Schema({
 TaskSchema.statics.toAPI = (doc) => ({
     name: doc.name,
     priority: doc.priority,
+    icon: doc.icon,
 });
 
 TaskSchema.statics.findByOwner = (ownerId, callback) => {
     const search ={
         owner: convertId(ownerId),
     };
-    return TaskModel.find(search).select('name priority').lean().exec(callback);
+    return TaskModel.find(search).select('name priority icon _id').lean().exec(callback);
 };
 
 TaskModel = mongoose.model('Task', TaskSchema);

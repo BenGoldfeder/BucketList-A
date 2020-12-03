@@ -6,7 +6,7 @@ var handleTask = function handleTask(e) {
     width: 'hide'
   }, 350);
 
-  if ($("#TaskName").val() == '' || $("#taskPriority").val() == '') {
+  if ($("#taskName").val() == '' || $("#taskPriority").val() == '') {
     handleError("Please fill out all fields!");
     return false;
   }
@@ -39,6 +39,27 @@ var TaskForm = function TaskForm(props) {
     type: "password",
     name: "priority",
     placeholder: "Task Priority"
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "icon"
+  }, "Type: "), /*#__PURE__*/React.createElement("select", {
+    id: "taskIcon",
+    name: "icon"
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "/assets/img/note.png"
+  }, "None"), /*#__PURE__*/React.createElement("option", {
+    value: "/assets/img/game.png"
+  }, "Game"), /*#__PURE__*/React.createElement("option", {
+    value: "/assets/img/book.png"
+  }, "Book"), /*#__PURE__*/React.createElement("option", {
+    value: "/assets/img/movie.png"
+  }, "Movie"), /*#__PURE__*/React.createElement("option", {
+    value: "/assets/img/music.png"
+  }, "Music"), /*#__PURE__*/React.createElement("option", {
+    value: "/assets/img/series.png"
+  }, "Series")), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_id",
+    value: props._id
   }), /*#__PURE__*/React.createElement("input", {
     type: "hidden",
     name: "_csrf",
@@ -59,16 +80,19 @@ var TaskList = function TaskList(props) {
     }, "No tasks added yet! Why not add one?"));
   }
 
-
-//Change face IMG
   var taskNodes = props.tasks.map(function (task) {
     return /*#__PURE__*/React.createElement("div", {
       key: task._id,
       className: "task"
     }, /*#__PURE__*/React.createElement("img", {
-      src: "/assets/img/note.png",
+      src: task.icon,
       alt: "task icon",
-      className: "taskIcon"
+      className: "displayIcon"
+    }), /*#__PURE__*/React.createElement("img", {
+      src: "/assets/img/closed.png",
+      alt: "delete task",
+      className: "deleteIcon",
+      onClick: deleteTask(task._id)
     }), /*#__PURE__*/React.createElement("h3", {
       className: "taskName"
     }, " Name: ", task.name, " "), /*#__PURE__*/React.createElement("h3", {
@@ -79,7 +103,6 @@ var TaskList = function TaskList(props) {
     className: "taskList"
   }, taskNodes);
 };
-
 
 var loadTasksFromServer = function loadTasksFromServer() {
   sendAjax('GET', '/getTasks', null, function (data) {
@@ -105,6 +128,10 @@ var getToken = function getToken() {
   });
 };
 
+var deleteTask = function deleteTask(selectedID) {
+  sendAjax('POST', '/deleteTask', selectedID);
+};
+
 $(document).ready(function () {
   getToken();
 });
@@ -112,13 +139,13 @@ $(document).ready(function () {
 
 var handleError = function handleError(message) {
   $("#errorMessage").text(message);
-  $("#myMessage").animate({
+  $("#domoMessage").animate({
     width: 'toggle'
   }, 350);
 };
 
 var redirect = function redirect(response) {
-  $("#myMessage").animate({
+  $("#domoMessage").animate({
     width: 'hide'
   }, 350);
   window.location = response.redirect;
